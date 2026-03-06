@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+// Insertion Sort function
+void insertionSort(int arr[], int n) {
+    int i, key, j;
+    for (i = 1; i < n; i++) {
+        key = arr[i];
+        j = i - 1;
+
+        // Move elements greater than key one position ahead
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+
+        // Print array after each insertion
+        printf("Pass %d: ", i);
+        for (int k = 0; k < n; k++) {
+            printf("%d ", arr[k]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    // Example 1: Array with Duplicates
+    int arr1[] = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+    printf("Input: [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]\n");
+    insertionSort(arr1, n1);
+    printf("Output: ");
+    for (int i = 0; i < n1; i++) printf("%d ", arr1[i]);
+    printf("\n\n");
+
+    // Example 2: All Identical Elements
+    int arr2[] = {5, 5, 5, 5, 5};
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+    printf("Input: [5, 5, 5, 5, 5]\n");
+    insertionSort(arr2, n2);
+    printf("Output: ");
+    for (int i = 0; i < n2; i++) printf("%d ", arr2[i]);
+    printf("\n\n");
+
+    // Example 3: Mixed Duplicates
+    int arr3[] = {2, 3, 1, 3, 2, 1, 1, 3};
+    int n3 = sizeof(arr3) / sizeof(arr3[0]);
+    printf("Input: [2, 3, 1, 3, 2, 1, 1, 3]\n");
+    insertionSort(arr3, n3);
+    printf("Output: ");
+    for (int i = 0; i < n3; i++) printf("%d ", arr3[i]);
+    printf("\n");
+
+    return 0;
+}
+
+OUTPUT-
+Input: [3, 1, 4, 1, 5, 9, 2, 6, 5, 3]
+Pass 1: 1 3 4 1 5 9 2 6 5 3 
+Pass 2: 1 3 4 1 5 9 2 6 5 3 
+Pass 3: 1 1 3 4 5 9 2 6 5 3 
+Pass 4: 1 1 3 4 5 9 2 6 5 3 
+Pass 5: 1 1 3 4 5 9 2 6 5 3 
+Pass 6: 1 1 2 3 4 5 9 6 5 3 
+Pass 7: 1 1 2 3 4 5 6 9 5 3 
+Pass 8: 1 1 2 3 4 5 5 6 9 3 
+Pass 9: 1 1 2 3 3 4 5 5 6 9 
+Output: 1 1 2 3 3 4 5 5 6 9 
+
+Input: [5, 5, 5, 5, 5]
+Pass 1: 5 5 5 5 5 
+Pass 2: 5 5 5 5 5 
+Pass 3: 5 5 5 5 5 
+Pass 4: 5 5 5 5 5 
+Output: 5 5 5 5 5 
+
+Input: [2, 3, 1, 3, 2, 1, 1, 3]
+Pass 1: 2 3 1 3 2 1 1 3 
+Pass 2: 1 2 3 3 2 1 1 3 
+Pass 3: 1 2 3 3 2 1 1 3 
+Pass 4: 1 2 2 3 3 1 1 3 
+Pass 5: 1 1 2 2 3 3 1 3 
+Pass 6: 1 1 1 2 2 3 3 3 
+Pass 7: 1 1 1 2 2 3 3 3 
+Output: 1 1 1 2 2 3 3 3
