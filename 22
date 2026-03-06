@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+// Function to perform Selection Sort
+void selectionSort(int arr[], int n) {
+    int i, j, minIndex, temp;
+
+    for (i = 0; i < n - 1; i++) {
+        // Assume the current index is the minimum
+        minIndex = i;
+
+        // Find the smallest element in the remaining unsorted array
+        for (j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+
+        // Swap the found minimum element with the first element
+        temp = arr[minIndex];
+        arr[minIndex] = arr[i];
+        arr[i] = temp;
+
+        // Print the array after each pass
+        printf("Pass %d: ", i + 1);
+        for (int k = 0; k < n; k++) {
+            printf("%d ", arr[k]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    // Example 1: Random Array
+    int arr1[] = {5, 2, 9, 1, 5, 6};
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+    printf("Sorting Random Array:\n");
+    selectionSort(arr1, n1);
+    printf("Final Output: ");
+    for (int i = 0; i < n1; i++) printf("%d ", arr1[i]);
+    printf("\n\n");
+
+    // Example 2: Reverse Sorted Array
+    int arr2[] = {10, 8, 6, 4, 2};
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+    printf("Sorting Reverse Sorted Array:\n");
+    selectionSort(arr2, n2);
+    printf("Final Output: ");
+    for (int i = 0; i < n2; i++) printf("%d ", arr2[i]);
+    printf("\n\n");
+
+    // Example 3: Already Sorted Array
+    int arr3[] = {1, 2, 3, 4, 5};
+    int n3 = sizeof(arr3) / sizeof(arr3[0]);
+    printf("Sorting Already Sorted Array:\n");
+    selectionSort(arr3, n3);
+    printf("Final Output: ");
+    for (int i = 0; i < n3; i++) printf("%d ", arr3[i]);
+    printf("\n");
+
+    return 0;
+}
+
+
+OUTPUT-
+Sorting Random Array:
+Pass 1: 1 2 9 5 5 6 
+Pass 2: 1 2 9 5 5 6 
+Pass 3: 1 2 5 9 5 6 
+Pass 4: 1 2 5 5 9 6 
+Pass 5: 1 2 5 5 6 9 
+Final Output: 1 2 5 5 6 9 
+
+Sorting Reverse Sorted Array:
+Pass 1: 2 8 6 4 10 
+Pass 2: 2 4 6 8 10 
+Pass 3: 2 4 6 8 10 
+Pass 4: 2 4 6 8 10 
+Final Output: 2 4 6 8 10 
+
+Sorting Already Sorted Array:
+Pass 1: 1 2 3 4 5 
+Pass 2: 1 2 3 4 5 
+Pass 3: 1 2 3 4 5 
+Pass 4: 1 2 3 4 5 
+Final Output: 1 2 3 4 5 
