@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+// Function to find kth missing positive number
+int findKthMissing(int arr[], int n, int k) {
+    int left = 0, right = n - 1, mid;
+
+    // Binary search approach
+    while (left <= right) {
+        mid = left + (right - left) / 2;
+        int missing = arr[mid] - (mid + 1);
+
+        if (missing < k) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    // Answer is k + right + 1
+    return k + right + 1;
+}
+
+int main() {
+    // Example 1
+    int arr1[] = {2, 3, 4, 7, 11};
+    int k1 = 5;
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+    printf("Input: [2,3,4,7,11], k=5\n");
+    printf("Output: %d\n\n", findKthMissing(arr1, n1, k1));
+
+    // Example 2
+    int arr2[] = {1, 2, 3, 4};
+    int k2 = 2;
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+    printf("Input: [1,2,3,4], k=2\n");
+    printf("Output: %d\n", findKthMissing(arr2, n2, k2));
+
+    return 0;
+}
+
+
+OUTPUT-
+Input: [2,3,4,7,11], k=5
+Output: 9
+
+Input: [1,2,3,4], k=2
+Output: 6
